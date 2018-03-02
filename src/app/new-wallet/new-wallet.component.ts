@@ -11,28 +11,28 @@ export class NewWalletComponent implements OnInit {
 
   privateKeyFile: string;
 
-  constructor(private eth: EthjsService) {
+  constructor(private eth: EthjsService) {}
 
+  ngOnInit() {}
+
+  downloadKeyFile() {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.privateKeyFile));
+    var dlAnchorElem = document.getElementById('download-key-file');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", "orocolo-key.json");
+    dlAnchorElem.click();
   }
 
-  ngOnInit() {
-    // this.eth.get().accounts().then(accounts => {
-    //   console.log(accounts);
-    // })
-  }
+  generateWallet() {
+    var wallet = this.eth.Wallet.createRandom();
 
-  generatePrivateKey() {
-    var privateKey = this.eth.generatePrivateKey();
-
-    var keyObj = {
-      privateKey: privateKey,
+    var walletObj = {
+      address: wallet.address,
+      privateKey: wallet.privateKey,
+      path: wallet.path,
+      mnemonic: wallet.mnemonic,
     };
 
-    this.privateKeyFile = JSON.stringify(keyObj);
-
-    // var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(keyObj));
-    // var dlAnchorElem = document.getElementById('downloadAnchorElem');
-    // dlAnchorElem.setAttribute("href", dataStr);
-    // dlAnchorElem.setAttribute("download", "scene.json");
+    this.privateKeyFile = JSON.stringify(walletObj);
   }
 }

@@ -8,8 +8,8 @@
 
 // EBM variables
 @import "./src/assets/sass/ebm-variables";
-@import "./node_modules/ebm/functions/ebm-functions";
-@import "./node_modules/ebm/helpers/ebm-helpers";
+@import "./node_modules/ebm/ebm/functions/ebm-functions";
+@import "./node_modules/ebm/ebm/helpers/ebm-helpers";
 @import "./src/assets/sass/ebm-fonts-setup";
 
 .hero.new-wallet {
@@ -23,10 +23,21 @@
 }
 
 .private-key-file-box {
-  background-color: $black;
+  margin-bottom: get-spacer(3);
+  background-color: black;
   padding: get-spacer(3);
   word-wrap: break-word;
-  color: white;
+  color: $gray-500;
+}
+
+.private-key-alert {
+  margin-bottom: get-spacer(3);
+  .alert-box {
+    background-color: lighten($black, 7%);
+    border-radius: $border-radius;
+    padding: get-spacer(3);
+    color: white;
+  }
 }
 
 /*

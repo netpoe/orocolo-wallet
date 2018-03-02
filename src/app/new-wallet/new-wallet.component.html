@@ -3,9 +3,17 @@
 <section class="hero new-wallet">
   <div class="container-sm">
     <div class="new-wallet-wrapper">
-      <div class="private-key-file-box"><span>{{ privateKeyFile }}</span></div>
-      <button class="btn btn-lg btn-block btn-primary" *ngIf="privateKeyFile">Download keyfile</button>
-      <button (click)="generatePrivateKey()" class="btn btn-lg btn-block btn-success">Get me a new wallet address</button>
+      <div class="private-key-file-box" *ngIf="privateKeyFile"><span>{{ privateKeyFile }}</span></div>
+      <div class="private-key-alert" *ngIf="privateKeyFile">
+        <div class="alert-box text-center">
+          <h3>¡Warning!</h3>
+          <h5>You will only be able to download this file ONCE. Download and store it in a safe place in order to unlock your wallet. We do not store this file in our servers, so this is your responsibility.</h5>
+          <a class="btn btn-lg btn-block btn-primary"
+            id="download-key-file"
+            (click)="downloadKeyFile()">Download keyfile</a>
+        </div>
+      </div>
+      <button (click)="generateWallet()" class="btn btn-lg btn-block btn-success">Get me a new wallet address</button>
     </div>
   </div>
 </section>
