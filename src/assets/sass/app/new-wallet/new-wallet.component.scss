@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/mixins";
+@import "./src/assets/sass/bootstrap-variables";
+
+@import "./node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
+
+// EBM variables
+@import "./src/assets/sass/ebm-variables";
+@import "./node_modules/ebm/functions/ebm-functions";
+@import "./node_modules/ebm/helpers/ebm-helpers";
+@import "./src/assets/sass/ebm-fonts-setup";
+
+.hero.new-wallet {
+  .new-wallet-wrapper {
+    @include box-shadow-default;
+    border-radius: $border-radius;
+    margin-bottom: get-spacer(3);
+    background-color: $black;
+    padding: get-spacer(3);
+  }
+}
+
+/*
+  Media queries
+*/
+// @media #{$xs-only} {}
+// @media #{$sm-only} {}
+// @media #{$md-only} {}
+// @media #{$lg-only} {}
+// @media #{$sm-down} {}
+// @media #{$md-down} {}
+// @media #{$lg-down} {}
+// @media #{$sm-up} {}
+// @media #{$md-up} {}
+// @media #{$lg-up} {}
+// @media #{$xl-up} {}
+// @media #{$xxl-up} {}
+
