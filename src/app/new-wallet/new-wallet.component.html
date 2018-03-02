@@ -3,7 +3,9 @@
 <section class="hero new-wallet">
   <div class="container-sm">
     <div class="new-wallet-wrapper">
-      <button class="btn btn-lg btn-block btn-success">Get me a new wallet address</button>
+      <div class="private-key-file-box"><span>{{ privateKeyFile }}</span></div>
+      <button class="btn btn-lg btn-block btn-primary" *ngIf="privateKeyFile">Download keyfile</button>
+      <button (click)="generatePrivateKey()" class="btn btn-lg btn-block btn-success">Get me a new wallet address</button>
     </div>
   </div>
 </section>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Eth } from 'ethjs';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +6,4 @@ import { Eth } from 'ethjs';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  title = 'something';
-
-  eth = null;
-
-  construct(){
-    this.eth = new Eth(new Eth.HttpProvider('http://faucet.ropsten.be:3001/'));
-  }
-}
+export class AppComponent {}

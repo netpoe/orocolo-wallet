@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { NewWalletComponent } from './new-wallet/new-wallet.component';
 import { firebaseConfig } from '../environments/firebase.config';
+import { EthjsService } from './ethjs.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { firebaseConfig } from '../environments/firebase.config';
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [],
+  providers: [EthjsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
