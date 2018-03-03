@@ -13,6 +13,17 @@ import { NewWalletComponent } from './new-wallet/new-wallet.component';
 import { firebaseConfig } from '../environments/firebase.config';
 import { EthjsService } from './ethjs.service';
 
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+  url: '/login',
+  autoQueue: false,
+  maxFilesize: 1,
+  acceptedFiles: 'application/json'
+};
 
 @NgModule({
   declarations: [
@@ -26,9 +37,16 @@ import { EthjsService } from './ethjs.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    DropzoneModule
   ],
-  providers: [EthjsService],
+  providers: [
+    EthjsService,
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
