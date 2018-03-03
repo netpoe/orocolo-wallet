@@ -8,8 +8,8 @@
 
 // EBM variables
 @import "./src/assets/sass/ebm-variables";
-@import "./node_modules/ebm/functions/ebm-functions";
-@import "./node_modules/ebm/helpers/ebm-helpers";
+@import "./node_modules/ebm/ebm/functions/ebm-functions";
+@import "./node_modules/ebm/ebm/helpers/ebm-helpers";
 @import "./src/assets/sass/ebm-fonts-setup";
 
 .hero.login {
@@ -35,6 +35,13 @@
       color: white;
     }
   }
+}
+
+.private-key-file-content {
+  border-radius: $border-radius;
+  background-color: black;
+  padding: get-spacer(3);
+  color: white;
 }
 
 /*

@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  privateKey: string;
+
+  mnemonic: string;
+
+  address: string;
+
   constructor() { }
 
   ngOnInit() {
@@ -20,18 +26,22 @@ export class LoginComponent implements OnInit {
     console.log($evt);
   }
 
-  onFileSend(file, xhrObject, formData) {
-    console.log(file, xhrObject, formData);
-
+  onFileAdded(file) {
+    console.log(file);
     var reader = new FileReader();
 
-    reader.onload = (function(theFile) {
+    var content;
+
+    reader.onload = (function(theFile, comp) {
       return function(e) {
-        var content = JSON.parse(e.target.result);
+        content = JSON.parse(e.target.result);
         content = JSON.parse(content);
-        var privateKey = content.privateKey;
+        console.log(content);
+        comp.privateKey = content.privateKey;
+        comp.mnemonic = content.mnemonic || '';
+        comp.address = content.address || '';
       };
-    })(file);
+    })(file, this);
 
     reader.readAsText(file);
   }

@@ -19,18 +19,18 @@
 
 // EBM variables
 @import "./src/assets/sass/ebm-variables";
-@import "./node_modules/ebm/functions/ebm-functions";
-@import "./node_modules/ebm/helpers/ebm-helpers";
+@import "./node_modules/ebm/ebm/functions/ebm-functions";
+@import "./node_modules/ebm/ebm/helpers/ebm-helpers";
 @import "./src/assets/sass/ebm-fonts-setup";
 @import "./src/assets/sass/ebm-fonts";
 @import "./src/assets/sass/ebm-bootstrap-overrides";
-@import "./node_modules/ebm/control/ebm-text-responsive-control";
-@import "./node_modules/ebm/elements/ebm-grid-lists";
-@import "./node_modules/ebm/elements/ebm-icons";
-@import "./node_modules/ebm/control/ebm-container-control";
+@import "./node_modules/ebm/ebm/control/ebm-text-responsive-control";
+@import "./node_modules/ebm/ebm/elements/ebm-grid-lists";
+@import "./node_modules/ebm/ebm/elements/ebm-icons";
+@import "./node_modules/ebm/ebm/control/ebm-container-control";
 @import "./src/assets/sass/ebm-overrides";
 @import "./src/assets/sass/ebm-global";
-@import "./node_modules/ebm/modules/ebm-header";
+@import "./node_modules/ebm/ebm/modules/ebm-header";
 
 .header {
   @include position(absolute, 0 0 null 0);
@@ -77,6 +77,26 @@ input[type="submit"].btn,
 .footer {
   background-color: $pink;
   height: 5vh;
+}
+
+.dropzone {
+  &.dz-wrapper {
+    .dz-message {
+      background-color: transparent !important;
+      border: 2px dashed $blue !important;
+      border-radius: $border-radius;
+      max-width: 100% !important;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+      width: 100% !important;
+      .dz-text {
+        color: white;
+      }
+    }
+    .dz-preview {
+      display: none;
+    }
+  }
 }
 
 /*

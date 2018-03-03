@@ -10,21 +10,28 @@
         <div class="col-11">
           <dropzone
             [config]="config"
-            [message]="'Click or drag images here to upload'"
+            [message]="'Click or drag your json private key file here to unlock'"
             (error)="onUploadError($event)"
             (success)="onUploadSuccess($event)"
-            (addedFile)="onFileSend($event, xhrObject, formData)"></dropzone>
-          <!-- <button class="btn btn-lg btn-block btn-success">Load a private key file</button> -->
-          <!-- <fieldset class="form-group private-key-input">
-            <textarea autofocus="autofocus" name="private-key-input" class="form-control form-control-lg" placeholder="Please enter your private key"></textarea>
-          </fieldset> -->
+            (addedFile)="onFileAdded($event, file)"></dropzone>
+
+          <div class="private-key-file-content" *ngIf="privateKey">
+            <div class="row align-items-center">
+              <div class="col-sm-9 ">
+                <span class="address">Address: {{ address }}</span>
+              </div>
+              <div class="col-sm-3">
+                <button class="btn btn-block btn-success">Unlock <i class="icon-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <fieldset class="form-group text-right">
+    <!-- <fieldset class="form-group text-right">
       <button class="btn btn-lg btn-dark">Unlock <i class="icon-chevron-right"></i></button>
-    </fieldset>
+    </fieldset> -->
   </div>
 </section>
 
