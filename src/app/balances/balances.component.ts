@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 
 export class BalancesComponent implements OnInit {
 
-  constructor(private eth: EthjsService, private router: Router) { }
+  constructor(public eth: EthjsService, private router: Router) { }
 
   ngOnInit() {
-    if (this.eth.wallet == undefined || this.eth.provider == undefined) {
-      return this.router.navigateByUrl('/login');
-    }
+    // if (this.eth.wallet == undefined || this.eth.provider == undefined) {
+    //   return this.router.navigateByUrl('/login');
+    // }
 
-    this.getBalance();
+    // this.getBalance();
   }
 
   getBalance() {

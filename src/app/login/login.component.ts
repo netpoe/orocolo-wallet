@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
     var classes = ['.tab-pane', '.tab'];
 
     classes.forEach(selector => {
-      document
-        .querySelectorAll(selector)
+      Array.from(document
+        .querySelectorAll(selector))
         .forEach(item => {
           item.classList.remove('active')
         });
