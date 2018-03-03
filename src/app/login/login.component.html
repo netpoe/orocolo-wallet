@@ -3,25 +3,51 @@
 <section class="hero login">
   <div class="container-md">
     <div class="private-key-input-wrapper">
+      <div class="tabs">
+        <span (click)="switchTab($event, 'from-file')" class="tab active">From file</span>
+        <span (click)="switchTab($event, 'from-mnemonic')" class="tab">From mnemonic</span>
+        <span (click)="switchTab($event, 'from-password')" class="tab">From password</span>
+      </div>
       <div class="row">
         <div class="col-1">
           <div class="vault-icon"><i class="icon-vault"></i></div>
         </div>
         <div class="col-11">
-          <dropzone
-            [config]="config"
-            [message]="'Click or drag your json private key file here to unlock'"
-            (error)="onUploadError($event)"
-            (success)="onUploadSuccess($event)"
-            (addedFile)="onFileAdded($event, file)"></dropzone>
+          <div class="tab-pane active" id="from-file">
+            <dropzone
+              [config]="config"
+              [message]="'Click or drag your json private key file here to unlock'"
+              (error)="onUploadError($event)"
+              (success)="onUploadSuccess($event)"
+              (addedFile)="onFileAdded($event, file)"></dropzone>
+          </div>
+          <div class="tab-pane" id="from-mnemonic">
+            <fieldset class="form-group private-key-input">
+              <textarea
+                [(ngModel)]="wallet.mnemonic"
+                (keypress)="unlockFromMnemonic($event)"
+                (paste)="unlockFromMnemonic($event)"
+                (keyup)="unlockFromMnemonic($event)"
+                (blur)="unlockFromMnemonic($event)"
+                (focus)="unlockFromMnemonic($event)"
+                placeholder="Paste or type your 12 word mnemonic"
+                class="form-control form-control-lg"></textarea>
+            </fieldset>
+            <!-- <div class="text-right">
+              <button class="btn btn-success" (click)="unlockFromMnemonic()">Unlock <i class="icon-chevron-right"></i></button>
+            </div> -->
+          </div>
+          <div class="tab-pane" id="from-password">
 
-          <div class="private-key-file-content" *ngIf="privateKey">
+          </div>
+
+          <div class="private-key-file-content" *ngIf="wallet.privateKey">
             <div class="row align-items-center">
               <div class="col-sm-9 ">
-                <span class="address">Address: {{ address }}</span>
+                <span class="address">Address: {{ wallet.address }}</span>
               </div>
               <div class="col-sm-3">
-                <button class="btn btn-block btn-success">Unlock <i class="icon-chevron-right"></i></button>
+                <button class="btn btn-block btn-success" (click)="unlockWallet()">Unlock <i class="icon-chevron-right"></i></button>
               </div>
             </div>
           </div>

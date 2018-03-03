@@ -12,22 +12,23 @@
 @import "./node_modules/ebm/ebm/helpers/ebm-helpers";
 @import "./src/assets/sass/ebm-fonts-setup";
 
-.hero.login {
-  .private-key-input-wrapper {
-    @include box-shadow-default;
-    border-radius: $border-radius;
-    margin-bottom: get-spacer(3);
-    background-color: $black;
-    padding: get-spacer(3);
-  }
+$tabs-height: 28px;
+
+.private-key-input-wrapper {
+  @include box-shadow-default;
+  border-radius: $border-radius;
+  margin-bottom: get-spacer(3);
+  background-color: $black;
+  padding: get-spacer(3);
+  position: relative;
   .private-key-input {
-    margin-bottom: 0;
     .form-control {
       border-color: darken($black, 3%);
-      background-color: transparent;
+      background-color: black;
       color: white;
     }
   }
+
   .vault-icon {
     text-align: center;
     i {
@@ -35,6 +36,37 @@
       color: white;
     }
   }
+
+  .tabs {
+    $height: $tabs-height + 1;
+    @include position(absolute, -$height null null 0);
+    height: $tabs-height;
+    span {
+      transform: skewX(-5deg) translateX(2px);
+      background-color: lighten($black, 14%);
+      padding: get-spacer(1) get-spacer(2);
+      border-top-right-radius: 12px;
+      font-size: $font-size-sm;
+      display: inline-block;
+      color: $gray-500;
+      &.active,
+      &:hover {
+        background-color: $black;
+        cursor: pointer;
+        color: white;
+      }
+    }
+  }
+  .tab-pane {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+
+
+.hero.login {
 }
 
 .private-key-file-content {

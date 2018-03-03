@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { EthjsService } from '../ethjs.service';
+import { Router } from '@angular/router';
+import { Wallet } from '../_models/wallet';
+
+const PROVIDER_URL = 'http://localhost:7545';
 
 @Component({
   selector: 'app-login',
@@ -7,15 +12,76 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  privateKey: string;
+  wallet: Wallet = {
+    privateKey: '',
+    address: '',
+    mnemonic: '',
+    path: '',
+  };
 
-  mnemonic: string;
-
-  address: string;
-
-  constructor() { }
+  constructor(private eth: EthjsService, private router: Router) {}
 
   ngOnInit() {
+  }
+
+  private setWalletData(data) {
+    this.wallet = {
+      privateKey: data.privateKey || '',
+      mnemonic: data.mnemonic || '',
+      path: data.mnemonic || '',
+      address: data.address || '',
+    };
+  }
+
+  private unsetWalletData() {
+    this.wallet = {
+      privateKey: '',
+      mnemonic: '',
+      path: '',
+      address: '',
+    };
+  }
+
+  switchTab($evt, id) {
+    var classes = ['.tab-pane', '.tab'];
+
+    classes.forEach(selector => {
+      document
+        .querySelectorAll(selector)
+        .forEach(item => {
+          item.classList.remove('active')
+        });
+    });
+
+    $evt.target.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+
+  unlockFromMnemonic($evt) {
+    if (this.wallet.mnemonic.split(' ').length != 12) {
+      return this.unsetWalletData();
+    }
+
+    try {
+      this.eth.wallet = this.eth.Wallet.fromMnemonic(this.wallet.mnemonic);
+      return this.setWalletData(this.eth.wallet);
+    } catch {
+      return this.unsetWalletData();
+    }
+  }
+
+  unlockWallet() {
+    this.eth.provider = new this.eth.Providers.JsonRpcProvider(PROVIDER_URL);
+
+    this.eth.wallet = new this.eth.Wallet(this.wallet.privateKey, this.eth.provider);
+
+    if (this.eth.wallet.address === this.wallet.address
+        && this.eth.wallet.privateKey === this.wallet.privateKey) {
+
+      return this.router.navigateByUrl('balances');
+    }
+
+    console.log('file corrupted');
   }
 
   onUploadError($evt) {
@@ -27,7 +93,6 @@ export class LoginComponent implements OnInit {
   }
 
   onFileAdded(file) {
-    console.log(file);
     var reader = new FileReader();
 
     var content;
@@ -36,10 +101,7 @@ export class LoginComponent implements OnInit {
       return function(e) {
         content = JSON.parse(e.target.result);
         content = JSON.parse(content);
-        console.log(content);
-        comp.privateKey = content.privateKey;
-        comp.mnemonic = content.mnemonic || '';
-        comp.address = content.address || '';
+        comp.setWalletData(content);
       };
     })(file, this);
 

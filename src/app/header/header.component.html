@@ -6,9 +6,12 @@
       </div>
       <div class="col-sm-4 header-center"></div>
       <div class="col-sm-4 header-right">
-        <nav>
+        <nav *ngIf="router.url == '/login' || router.url == '/new-wallet'">
           <a routerLink="/login">Login</a>
           <a routerLink="/new-wallet" class="btn btn-outline-light">create new wallet</a>
+        </nav>
+        <nav *ngIf="router.url == '/balances'">
+          <a routerLink="/login">Logout</a>
         </nav>
       </div>
     </div>

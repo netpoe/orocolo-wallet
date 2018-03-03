@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -38,7 +39,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    DropzoneModule
+    DropzoneModule,
+    FormsModule
   ],
   providers: [
     EthjsService,
