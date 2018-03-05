@@ -69,6 +69,7 @@
       @include flex-row;
       background-color: darken($black, 3%);
       border-radius: $border-radius;
+      margin-bottom: get-spacer(1);
       color: white;
       &:hover,
       &.active {
@@ -111,6 +112,24 @@
         .amount {}
       }
     }
+  }
+
+  .form-group {
+    background-color: darken($black, 3%);
+    border-radius: $border-radius;
+    label {
+      text-transform: uppercase;
+      padding: $input-padding-x;
+      font-size: $font-size-sm;
+      margin-bottom: 0;
+      color: $gray-500;
+      display: block;
+    }
+  }
+  .form-control {
+    background-color: transparent;
+    border: none;
+    color: white;
   }
 }
 

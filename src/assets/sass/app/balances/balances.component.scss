@@ -14,7 +14,21 @@
 
 @import "./src/assets/sass/common/balances-wrapper";
 
-
+.coins-header {
+  @include make-container;
+  padding-bottom: get-spacer(3);
+  padding-top: get-spacer(3);
+  h5 {
+    color: white;
+    margin: 0;
+  }
+  nav {
+    text-align: right;
+  }
+  a:not(.btn) {
+    color: white;
+  }
+}
 
 /*
   Media queries

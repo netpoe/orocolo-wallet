@@ -16,11 +16,11 @@ export class TransferComponent implements OnInit {
     from: '',
     to: '',
     amount: 0,
-    gasLimit: 0,
-    gasPrice: 4,
+    gasLimit: 21000,
+    gasPrice: '0.000000004',
   };
 
-  transferFailed: false;
+  transferFailed: boolean = false;
 
   constructor(
     public eth: EthjsService,
@@ -29,8 +29,6 @@ export class TransferComponent implements OnInit {
 
   ngOnInit() {
     this.transfer.from = this.eth.wallet.address;
-    this.transfer.gasLimit = 21000;
-    this.transfer.gasPrice = '0.000000004';
   }
 
   transferFunds() {

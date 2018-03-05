@@ -3,5 +3,5 @@ export class Transfer {
   to: string;
   amount: number;
   gasLimit: number;
-  gasPrice: number;
+  gasPrice: string;
 }

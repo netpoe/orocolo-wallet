@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<section class="hero add-token">
+  <div class="container-xs">
+    <div class="balances-wrapper">
+      <div class="middle">
+        <fieldset class="form-group contract-address-input">
+          <label for="">* Token contract address:</label>
+          <input
+            [(ngModel)]="tokenAddress"
+            type="text"
+            class="form-control"
+            autofocus="autofocus"
+            placeholder="0x0">
+        </fieldset>
+        <fieldset class="text-right">
+          <button
+            (click)="addToken()"
+            class="btn btn-success btn-block btn-lg">Add Token</button>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"></footer>

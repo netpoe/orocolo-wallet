@@ -18,16 +18,12 @@
 .balances-wrapper {
   .middle {
     @include make-container;
-    border-top-right-radius: $border-radius-lg;
-    border-top-left-radius: $border-radius-lg;
+    border-radius: $border-radius-lg;
     padding-bottom: get-spacer(3);
     padding-top: get-spacer(3);
-  }
-  .alert {
-    margin-top: get-spacer(3);
+    min-height: auto;
   }
 }
-
 
 
 /*

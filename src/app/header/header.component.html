@@ -10,7 +10,7 @@
           <a routerLink="/login">Login</a>
           <a routerLink="/new-wallet" class="btn btn-outline-light">create new wallet</a>
         </nav>
-        <nav *ngIf="router.url == '/balances' || router.url == '/transfer'">
+        <nav *ngIf="router.url == '/balances' || router.url == '/transfer' || router.url == '/add-token'">
           <a routerLink="/balances">Balances</a>
           <a routerLink="/login">Logout</a>
         </nav>

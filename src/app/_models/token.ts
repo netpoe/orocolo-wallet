@@ -1,7 +1,7 @@
 export class Token {
   name: string;
   symbol: string;
-  value: number;
+  price: number;
   amount: number;
   usd: number;
 }

@@ -13,8 +13,8 @@ export class AppComponent {
   constructor(public eth: EthjsService, private router: Router) { }
 
   ngOnInit() {
-    // if (this.eth.wallet == undefined || this.eth.provider == undefined) {
-    //   return this.router.navigateByUrl('/login');
-    // }
+    if (this.eth.wallet == undefined || this.eth.provider == undefined) {
+      return this.router.navigateByUrl('/login');
+    }
   }
 }

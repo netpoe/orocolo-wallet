@@ -4,6 +4,7 @@ import { LoginComponent }  from './login/login.component';
 import { NewWalletComponent }  from './new-wallet/new-wallet.component';
 import { BalancesComponent }  from './balances/balances.component';
 import { TransferComponent } from './transfer/transfer.component';
+import { AddTokenComponent } from './add-token/add-token.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'new-wallet', component: NewWalletComponent },
   { path: 'balances', component: BalancesComponent },
   { path: 'transfer', component: TransferComponent },
+  { path: 'add-token', component: AddTokenComponent },
 ];
 
 @NgModule({

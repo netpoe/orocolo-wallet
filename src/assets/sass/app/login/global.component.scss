@@ -64,6 +64,9 @@ input[type="submit"].btn,
   &.btn-lg {
     font-size: $font-size-sm;
   }
+  i {
+    font-weight: bold;
+  }
 }
 
 .hero {

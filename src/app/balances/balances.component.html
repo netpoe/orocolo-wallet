@@ -8,7 +8,7 @@
           <div class="row align-items-center">
             <div class="col-4"></div>
             <div class="col-4">
-              <span>{{ token.name | uppercase }}</span>
+              <span>{{ currentToken.name | uppercase }}</span>
             </div>
             <div class="col-4">
               <nav class="actions">
@@ -17,15 +17,38 @@
             </div>
           </div>
         </div>
-        <div class="selected-token-value"><span class="symbol">{{ token.symbol }}</span> <span class="amount">{{ token.amount }}</span></div>
+        <div class="selected-token-value"><span class="symbol">{{ currentToken.symbol }}</span> <span class="amount">{{ currentToken.amount }}</span></div>
         <div class="selected-token-equivalence">
-          <div class="in-eth" *ngIf="token.symbol != 'ETH'"><span class="symbol">ETH</span> <span class="amount">0.0</span></div>
-          <div class="in-usd"><span class="symbol">USD</span> <span class="amount">{{ token.usd | currency:'USD' }}</span></div>
+          <div class="in-eth" *ngIf="currentToken.symbol != 'ETH'"><span class="symbol">ETH</span> <span class="amount">0.0</span></div>
+          <div class="in-usd"><span class="symbol">USD</span> <span class="amount">{{ currentToken.usd | currency:'USD' }}</span></div>
         </div>
       </div>
       <div class="middle">
+        <header class="coins-header">
+          <div class="row align-items-center">
+            <div class="col-6">
+              <h5>My Tokens</h5>
+            </div>
+            <div class="col-6">
+              <nav>
+                <a routerLink="/add-token" class="btn btn-sm btn-outline-light"><i class="icon-plus-circle"></i> Add token</a>
+              </nav>
+            </div>
+          </div>
+        </header>
         <div class="token-list">
-          <article class="token">
+          <article class="token" *ngFor="let token of tokens">
+            <div class="logo"><span><i class="icon-fan"></i></span></div>
+            <div class="symbol">
+              <span class="sym">{{ token.symbol | uppercase }}</span>
+              <span class="current-value">{{ token.price | currency:'USD' }}</span>
+            </div>
+            <div class="holdings">
+              <span class="in-usd">{{ token.amount }}</span>
+              <span class="amount">{{ token.usd | currency:'USD' }}</span>
+            </div>
+          </article>
+          <!-- <article class="token">
             <div class="logo"><span><i class="icon-fan"></i></span></div>
             <div class="symbol">
               <span class="sym">TK</span>
@@ -35,7 +58,7 @@
               <span class="in-usd">$0.0</span>
               <span class="amount">0.0 TK</span>
             </div>
-          </article>
+          </article> -->
         </div>
       </div>
       <div class="bottom">
