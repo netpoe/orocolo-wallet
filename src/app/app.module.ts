@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -17,6 +18,8 @@ import { EthjsService } from './ethjs.service';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { CryptoPricesService } from './crypto-prices.service';
+import { TransferComponent } from './transfer/transfer.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -33,20 +36,23 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     BalancesComponent,
     TokenDetailsComponent,
     HeaderComponent,
-    NewWalletComponent
+    NewWalletComponent,
+    TransferComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     DropzoneModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [
     EthjsService,
+    CryptoPricesService
     {
       provide: DROPZONE_CONFIG,
-      useValue: DEFAULT_DROPZONE_CONFIG
+      useValue: DEFAULT_DROPZONE_CONFIG,
     }
   ],
   bootstrap: [AppComponent]

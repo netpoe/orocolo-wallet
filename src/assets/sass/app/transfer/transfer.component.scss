@@ -14,6 +14,32 @@
 
 @import "./src/assets/sass/common/balances-wrapper";
 
+.balances-wrapper {
+  .middle {
+    @include make-container;
+    border-top-right-radius: $border-radius-lg;
+    border-top-left-radius: $border-radius-lg;
+    padding-bottom: get-spacer(3);
+    padding-top: get-spacer(3);
+  }
+  .form-group {
+    background-color: darken($black, 3%);
+    border-radius: $border-radius;
+    label {
+      text-transform: uppercase;
+      padding: $input-padding-x;
+      font-size: $font-size-sm;
+      color: $gray-500;
+      display: block;
+    }
+  }
+  .form-control {
+    background-color: transparent;
+    border: none;
+    color: white;
+  }
+}
+
 
 
 /*

@@ -1,0 +1,123 @@
+.balances-wrapper {
+  @include box-shadow-default;
+  .top {
+    @include flex-column-center;
+    border-top-right-radius: $border-radius-lg;
+    border-top-left-radius: $border-radius-lg;
+    background-color: $blue;
+    text-align: center;
+    min-height: 180px;
+    color: white;
+  }
+  .middle {
+    background-color: $black;
+    min-height: 280px;
+  }
+  .bottom {
+    border-bottom-right-radius: $border-radius-lg;
+    border-bottom-left-radius: $border-radius-lg;
+    background-color: darken($black, 3%);
+    padding: get-spacer(3);
+    color: $gray-500;
+  }
+
+  .selected-token-name {
+    @include make-container;
+    margin-bottom: get-spacer(4);
+    font-size: $h6-font-size;
+    letter-spacing: 1.3px;
+    .actions {
+      text-align: right;
+      a {
+        font-size: $font-size-sm;
+        color: white;
+      }
+      i {
+        font-weight: bold;
+      }
+    }
+  }
+  .selected-token-value {
+    .symbol {}
+    .amount {
+      @include bold;
+      font-size: $h1-font-size;
+    }
+  }
+  .selected-token-equivalence {
+    @include flex-row-center;
+    color: $gray-200;
+    .in-eth {
+      &:after {
+        margin-right: get-spacer(1);
+        margin-left: get-spacer(1);
+        content: '·';
+      }
+    }
+    .in-usd {}
+    .symbol {
+      font-size: $font-size-sm;
+    }
+    .amount {
+      font-size: $h5-font-size;
+    }
+  }
+
+  .token-list {
+    padding: get-spacer(3);
+    .token {
+      @include flex-row;
+      background-color: darken($black, 3%);
+      border-radius: $border-radius;
+      color: white;
+      &:hover,
+      &.active {
+        @include box-shadow-default;
+        cursor: pointer;
+        transition: all;
+      }
+      > div {
+        @include flex-column-center;
+        height: 70px;
+      }
+      .logo {
+        @include flex-align-center;
+        text-align: center;
+        width: 20%;
+        span {
+          @include flex-column-center;
+          border-radius: $border-radius;
+          background-color: $blue;
+          height: 35px;
+          width: 35px;
+        }
+        i {
+          font-size: $h4-font-size;
+        }
+      }
+      .symbol .current-value,
+      .holdings .amount {
+        font-size: $font-size-sm;
+        color: $gray-600;
+      }
+      .symbol {
+        width: 40%;
+        .sym {}
+        .current-value {}
+      }
+      .holdings {
+        width: 40%;
+        .in-usd {}
+        .amount {}
+      }
+    }
+  }
+}
+
+.footer {
+  @include flex-column-center;
+  text-align: center;
+  .eth-usd {
+    color: white;
+  }
+}

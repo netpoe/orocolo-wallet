@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<section class="hero transfer">
+  <div class="container-xs">
+    <div class="balances-wrapper">
+      <div class="middle">
+        <fieldset class="form-group address-to-input">
+          <label for="">* Address to:</label>
+          <input type="text" class="form-control" autofocus="autofocus" placeholder="0x0">
+        </fieldset>
+        <fieldset class="form-group amount-input">
+          <label for="">* Amount (in ETH):</label>
+          <input type="text" class="form-control" placeholder="1.0">
+        </fieldset>
+        <div class="row">
+          <div class="col-sm-6">
+            <fieldset class="form-group gas-limit-input">
+              <label for="">Gas limit:</label>
+              <input type="text" class="form-control" placeholder="21000">
+            </fieldset>
+          </div>
+          <div class="col-sm-6">
+            <fieldset class="form-group gas-price-input">
+              <label for="">Gas price (in GWEI):</label>
+              <input type="text" class="form-control" placeholder="4">
+            </fieldset>
+          </div>
+        </div>
+        <fieldset class="text-right">
+          <button class="btn btn-success btn-block btn-lg">Transfer</button>
+        </fieldset>
+      </div>
+      <div class="bottom">
+        <span class="address">Address: {{ eth.wallet.address }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <span class="eth-usd">ETH/USD {{ prices.ethPrice | currency: 'USD' }}</span>
+  </div>
+</footer>
