@@ -49,7 +49,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   ],
   providers: [
     EthjsService,
-    CryptoPricesService
+    CryptoPricesService,
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG,

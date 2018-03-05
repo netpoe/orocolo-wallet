@@ -3,6 +3,7 @@
 @import "./node_modules/bootstrap/scss/functions";
 @import "./node_modules/bootstrap/scss/mixins";
 @import "./src/assets/sass/bootstrap-variables";
+@import "./node_modules/bootstrap/scss/alert";
 
 @import "./node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
 
@@ -37,6 +38,9 @@
     background-color: transparent;
     border: none;
     color: white;
+  }
+  .alert {
+    margin-top: get-spacer(3);
   }
 }
 
