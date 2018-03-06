@@ -39,7 +39,6 @@ export class BalancesComponent implements OnInit {
 
   private setToken(sym: string, data: Token) {
     this.tokens.push(data);
-    console.log(this.tokens);
   }
 
   private getTokensByAddress() {
@@ -47,9 +46,7 @@ export class BalancesComponent implements OnInit {
 
     this.firebase.listTokensByAddress(this.eth.wallet.address)
       .subscribe(tokens => {
-        console.log(Object.keys(tokens));
         Object.keys(tokens).forEach(token => {
-          console.log(token);
           comp.setTokenDataFromContract(token);
         });
       });
@@ -59,7 +56,6 @@ export class BalancesComponent implements OnInit {
     var comp = this;
 
     var contract = comp.eth.getTokenContract(address);
-    console.log(contract);
 
     var tokenData = {} as Token;
 
@@ -67,18 +63,15 @@ export class BalancesComponent implements OnInit {
     tokenData.contract = contract;
 
     contract.symbol().then(symbol => {
-      console.log(symbol.valueOf());
       tokenData.symbol = symbol.valueOf()[0];
       return contract.balanceOf(comp.eth.wallet.address);
     }).then(balanceOf => {
-      console.log(balanceOf.toString());
       tokenData.amount = balanceOf.toString();
       tokenData.price = 0.5;
       tokenData.usd = tokenData.price * tokenData.amount;
       tokenData.eth = tokenData.usd / comp.prices.ethPrice;
       return contract.name();
     }).then(name => {
-      console.log(name.valueOf());
       tokenData.name = name.valueOf()[0];
       comp.setToken(tokenData.symbol, tokenData);
     }).catch(error => {
@@ -87,7 +80,6 @@ export class BalancesComponent implements OnInit {
   }
 
   selectToken(index: number) {
-    console.log(index);
     this.transferService.currentToken = this.tokens[index];
 
     this.transferService.transfer.from = this.eth.wallet.address;

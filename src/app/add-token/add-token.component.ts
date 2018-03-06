@@ -28,7 +28,6 @@ export class AddTokenComponent implements OnInit {
 
     this.firebase
       .addTokenByAddress(this.tokenAddress).then(function() {
-        console.log('Token added successfully');
         comp.router.navigateByUrl('balances');
       }).catch(function(error) {
         console.error(error);
