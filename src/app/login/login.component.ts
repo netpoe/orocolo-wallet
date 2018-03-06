@@ -102,9 +102,9 @@ export class LoginComponent implements OnInit {
   unlockWallet() {
     if (environment.local) {
       return this.unlockJsonRpcWallet();
-    } else if (environment.development) {
-      return this.unlockRopstenWallet();
     }
+
+    return this.unlockRopstenWallet();
   }
 
   onUploadError($evt) {
