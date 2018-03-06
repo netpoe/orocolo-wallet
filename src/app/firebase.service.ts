@@ -15,7 +15,7 @@ export class FirebaseService {
 
   addTokenByAddress(address: string) {
     return this.db
-      .list(`${this.endpoints.tokensByAddress}/0x627306090abab3a6e1400e9345bc60c78a8bef57`)
+      .list(`${this.endpoints.tokensByAddress}/${this.eth.wallet.address}`)
       .push({
         address: address,
       });

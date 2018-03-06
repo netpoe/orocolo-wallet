@@ -14,13 +14,7 @@ import { FirebaseService } from '../firebase.service';
 
 export class BalancesComponent implements OnInit {
 
-  currentToken: Token = {
-    name: '',
-    symbol: '',
-    price: 0,
-    amount: 0,
-    usd: 0,
-  }
+  currentToken = {} as Token
 
   tokens: Token[] = []
 
@@ -78,10 +72,12 @@ export class BalancesComponent implements OnInit {
   }
 
   private setTokenDataFromContract(address: string) {
-    var contract = this.getTokenContract(address);
+    var comp = this;
+
+    var contract = comp.getTokenContract(address);
     console.log(contract);
 
-    var tokenData: Token{};
+    var tokenData = {} as Token;
 
     contract.symbol().then(symbol => {
       console.log(symbol.valueOf());
