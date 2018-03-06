@@ -15,6 +15,12 @@ Orocolo is an Angular ^5.0 Ethereum Wallet with the following features:
 - Add a new token in `/add-token`
 - Send funds to another address in `/transfer`
 
+## A note on listing tokens
+
+In local development, you must deploy your own ERC20 contracts. I used the (Tutorial Token Box)[http://truffleframework.com/boxes/tutorialtoken] from the truffle framework to deploy to the Ganache instance. 
+
+You can clone the contracts I used from my repo as well: (Wallet ERC20 token contracts)[https://github.com/netpoe/truffle-token-contracts]
+
 ## Running in local development
 
 Orocolo Wallet works with the Ropsten Testnet, however, for faster development I recommend installing the [Ganache UI](http://truffleframework.com/ganache/)
