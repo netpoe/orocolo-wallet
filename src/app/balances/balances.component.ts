@@ -88,6 +88,7 @@ export class BalancesComponent implements OnInit {
       tokenData.amount = balanceOf.toString();
       tokenData.price = 0.5;
       tokenData.usd = tokenData.price * tokenData.amount;
+      tokenData.eth = tokenData.usd / comp.prices.ethPrice;
       return contract.name();
     }).then(name => {
       console.log(name.valueOf());
@@ -100,6 +101,11 @@ export class BalancesComponent implements OnInit {
 
   private getTokenContract(address: string) {
     return new this.eth.Contract(address, this.ERC20ABI, this.eth.wallet);
+  }
+
+  selectToken(index: number) {
+    console.log(index);
+    this.currentToken = this.tokens[index];
   }
 
   getEthBalance() {

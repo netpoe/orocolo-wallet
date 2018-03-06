@@ -19,7 +19,7 @@
         </div>
         <div class="selected-token-value"><span class="symbol">{{ currentToken.symbol }}</span> <span class="amount">{{ currentToken.amount }}</span></div>
         <div class="selected-token-equivalence">
-          <div class="in-eth" *ngIf="currentToken.symbol != 'ETH'"><span class="symbol">ETH</span> <span class="amount">0.0</span></div>
+          <div class="in-eth" *ngIf="currentToken.symbol != 'ETH'"><span class="symbol">ETH</span> <span class="amount">{{ currentToken.eth }}</span></div>
           <div class="in-usd"><span class="symbol">USD</span> <span class="amount">{{ currentToken.usd | currency:'USD' }}</span></div>
         </div>
       </div>
@@ -37,7 +37,7 @@
           </div>
         </header>
         <div class="token-list">
-          <article class="token" *ngFor="let token of tokens">
+          <article class="token" *ngFor="let token of tokens; let $index = index" (click)="selectToken($index)">
             <div class="logo"><span><i class="icon-fan"></i></span></div>
             <div class="symbol">
               <span class="sym">{{ token.symbol | uppercase }}</span>
@@ -48,17 +48,6 @@
               <span class="amount">{{ token.usd | currency:'USD' }}</span>
             </div>
           </article>
-          <!-- <article class="token">
-            <div class="logo"><span><i class="icon-fan"></i></span></div>
-            <div class="symbol">
-              <span class="sym">TK</span>
-              <span class="current-value">$0.0</span>
-            </div>
-            <div class="holdings">
-              <span class="in-usd">$0.0</span>
-              <span class="amount">0.0 TK</span>
-            </div>
-          </article> -->
         </div>
       </div>
       <div class="bottom">
