@@ -7,16 +7,16 @@
         <fieldset class="form-group address-to-input">
           <label for="">* Address to:</label>
           <input
-            [(ngModel)]="transfer.to"
+            [(ngModel)]="transferService.transfer.to"
             type="text"
             class="form-control"
             autofocus="autofocus"
             placeholder="0x0">
         </fieldset>
         <fieldset class="form-group amount-input">
-          <label for="">* Amount (in ETH):</label>
+          <label for="">* Amount in <strong class="text-white underline">{{ transferService.currentToken.symbol }}</strong>:</label>
           <input
-            [(ngModel)]="transfer.amount"
+            [(ngModel)]="transferService.transfer.amount"
             type="text"
             class="form-control"
             placeholder="1.0">
@@ -26,7 +26,7 @@
             <fieldset class="form-group gas-limit-input">
               <label for="">Gas limit:</label>
               <input
-                [(ngModel)]="transfer.gasLimit"
+                [(ngModel)]="transferService.transfer.gasLimit"
                 type="text"
                 class="form-control"
                 placeholder="21000">
@@ -36,7 +36,7 @@
             <fieldset class="form-group gas-price-input">
               <label for="">Gas price (in ETH):</label>
               <input
-                [(ngModel)]="transfer.gasPrice"
+                [(ngModel)]="transferService.transfer.gasPrice"
                 type="text"
                 class="form-control"
                 placeholder="4">
@@ -45,10 +45,10 @@
         </div>
         <fieldset class="text-right">
           <button
-            (click)="transferFunds()"
+            (click)="transferService.transferFunds()"
             class="btn btn-success btn-block btn-lg">Transfer</button>
         </fieldset>
-        <div class="alert alert-danger text-white" role="alert" *ngIf="transferFailed">
+        <div class="alert alert-danger text-white" role="alert" *ngIf="transferService.transferFailed">
           <p><i class="icon-notification"></i> There was an error with your transaction. Please review your inputs and try again.</p>
         </div>
       </div>

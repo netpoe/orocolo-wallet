@@ -23,6 +23,7 @@ import { CryptoPricesService } from './crypto-prices.service';
 import { TransferComponent } from './transfer/transfer.component';
 import { AddTokenComponent } from './add-token/add-token.component';
 import { FirebaseService } from './firebase.service';
+import { TransferService } from './transfer.service';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -56,6 +57,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     EthjsService,
     CryptoPricesService,
     FirebaseService,
+    TransferService,
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG,

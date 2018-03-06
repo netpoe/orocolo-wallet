@@ -3,8 +3,8 @@ import { EthjsService } from '../ethjs.service';
 import { CryptoPricesService } from '../crypto-prices.service';
 import { Router } from '@angular/router';
 import { Token } from '../_models/token';
-import { HttpClient } from '@angular/common/http';
 import { FirebaseService } from '../firebase.service';
+import { TransferService } from '../transfer.service';
 
 @Component({
   selector: 'app-balances',
@@ -14,43 +14,27 @@ import { FirebaseService } from '../firebase.service';
 
 export class BalancesComponent implements OnInit {
 
-  currentToken = {} as Token
-
   tokens: Token[] = []
-
-  ERC20ABI: any;
 
   constructor(
     public eth: EthjsService,
     private router: Router,
-    private http: HttpClient,
     public prices: CryptoPricesService,
-    private firebase: FirebaseService) { }
+    private firebase: FirebaseService,
+    public transferService: TransferService) { }
 
   ngOnInit() {
     this.getEthBalance();
 
-    this.setERC20ABI();
+    this.eth.setERC20ABI();
 
     this.prices.setEthPrice();
 
     this.getTokensByAddress();
   }
 
-  private setERC20ABI() {
-    var comp = this;
-
-    this.http.get('assets/json/ERC20.abi.json')
-      .toPromise()
-      .then(ABI => {
-        comp.ERC20ABI = ABI;
-      }).catch(error => {
-        console.log(error);
-      });
-  }
-
   private setCurrentToken(data: Token) {
-    this.currentToken = data;
+    this.transferService.currentToken = data;
   }
 
   private setToken(sym: string, data: Token) {
@@ -74,10 +58,13 @@ export class BalancesComponent implements OnInit {
   private setTokenDataFromContract(address: string) {
     var comp = this;
 
-    var contract = comp.getTokenContract(address);
+    var contract = comp.eth.getTokenContract(address);
     console.log(contract);
 
     var tokenData = {} as Token;
+
+    tokenData.address = address;
+    tokenData.contract = contract;
 
     contract.symbol().then(symbol => {
       console.log(symbol.valueOf());
@@ -99,13 +86,11 @@ export class BalancesComponent implements OnInit {
     });
   }
 
-  private getTokenContract(address: string) {
-    return new this.eth.Contract(address, this.ERC20ABI, this.eth.wallet);
-  }
-
   selectToken(index: number) {
     console.log(index);
-    this.currentToken = this.tokens[index];
+    this.transferService.currentToken = this.tokens[index];
+
+    this.transferService.transfer.from = this.eth.wallet.address;
   }
 
   getEthBalance() {

@@ -8,7 +8,7 @@
           <div class="row align-items-center">
             <div class="col-4"></div>
             <div class="col-4">
-              <span>{{ currentToken.name | uppercase }}</span>
+              <span>{{ transferService.currentToken.name | uppercase }}</span>
             </div>
             <div class="col-4">
               <nav class="actions">
@@ -17,10 +17,10 @@
             </div>
           </div>
         </div>
-        <div class="selected-token-value"><span class="symbol">{{ currentToken.symbol }}</span> <span class="amount">{{ currentToken.amount }}</span></div>
+        <div class="selected-token-value"><span class="symbol">{{ transferService.currentToken.symbol }}</span> <span class="amount">{{ transferService.currentToken.amount }}</span></div>
         <div class="selected-token-equivalence">
-          <div class="in-eth" *ngIf="currentToken.symbol != 'ETH'"><span class="symbol">ETH</span> <span class="amount">{{ currentToken.eth }}</span></div>
-          <div class="in-usd"><span class="symbol">USD</span> <span class="amount">{{ currentToken.usd | currency:'USD' }}</span></div>
+          <div class="in-eth" *ngIf="transferService.currentToken.symbol != 'ETH'"><span class="symbol">ETH</span> <span class="amount">{{ transferService.currentToken.eth }}</span></div>
+          <div class="in-usd"><span class="symbol">USD</span> <span class="amount">{{ transferService.currentToken.usd | currency:'USD' }}</span></div>
         </div>
       </div>
       <div class="middle">

@@ -5,4 +5,6 @@ export class Token {
   amount?: number;
   usd?: number;
   eth?: number;
+  contract?: any;
+  address?: string;
 }
