@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { EthjsService } from '../ethjs.service';
 import { Router } from '@angular/router';
 import { Wallet } from '../_models/wallet';
+import { environment } from '../../environments/environment';
 
-const PROVIDER_URL = 'http://localhost:7545';
+const JSONRPC_PROVIDER_URL = 'http://localhost:7545';
 
 @Component({
   selector: 'app-login',
@@ -70,11 +71,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  unlockWallet() {
-    this.eth.provider = new this.eth.Providers.JsonRpcProvider(PROVIDER_URL);
-
-    this.eth.wallet = new this.eth.Wallet(this.wallet.privateKey, this.eth.provider);
-
+  private login() {
     if (this.eth.wallet.address === this.wallet.address
         && this.eth.wallet.privateKey === this.wallet.privateKey) {
 
@@ -82,6 +79,32 @@ export class LoginComponent implements OnInit {
     }
 
     console.log('file corrupted');
+  }
+
+  private unlockJsonRpcWallet() {
+    this.eth.provider = new this.eth.Providers.JsonRpcProvider(JSONRPC_PROVIDER_URL);
+
+    this.eth.wallet = new this.eth.Wallet(this.wallet.privateKey, this.eth.provider);
+
+    return this.login();
+  }
+
+  private unlockRopstenWallet() {
+    var network = this.eth.Providers.networks.ropsten;
+
+    this.eth.provider = new this.eth.Providers.EtherscanProvider(network);
+
+    this.eth.wallet = new this.eth.Wallet(this.wallet.privateKey, this.eth.provider);
+
+    return this.login();
+  }
+
+  unlockWallet() {
+    if (environment.local) {
+      return this.unlockJsonRpcWallet();
+    } else if (environment.development) {
+      return this.unlockRopstenWallet();
+    }
   }
 
   onUploadError($evt) {

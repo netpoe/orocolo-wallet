@@ -8,8 +8,6 @@ const Contract = Eth.Contract;
 const Utils = Eth.utils;
 const Providers = Eth.providers;
 
-// const rpcServer = 'http://faucet.ropsten.be:3001/';
-
 @Injectable()
 export class EthjsService {
 
