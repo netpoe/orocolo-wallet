@@ -14,16 +14,19 @@ export class FirebaseService {
     private eth: EthjsService) { }
 
   addTokenByAddress(address: string) {
+    var token = {};
+    token[address] = {
+      address: address
+    };
+
     return this.db
-      .list(`${this.endpoints.tokensByAddress}/${this.eth.wallet.address}`)
-      .push({
-        address: address,
-      });
+      .object(`${this.endpoints.tokensByAddress}/${this.eth.wallet.address}`)
+      .update(token);
   }
 
   listTokensByAddress(address: string) {
     return this.db
-      .list(`${this.endpoints.tokensByAddress}/${address}`)
+      .object(`${this.endpoints.tokensByAddress}/${address}`)
       .valueChanges();
   }
 

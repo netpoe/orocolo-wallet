@@ -63,10 +63,10 @@ export class BalancesComponent implements OnInit {
 
     this.firebase.listTokensByAddress(this.eth.wallet.address)
       .subscribe(tokens => {
-        console.log(tokens);
-        tokens.forEach(token => {
+        console.log(Object.keys(tokens));
+        Object.keys(tokens).forEach(token => {
           console.log(token);
-          comp.setTokenDataFromContract(token.address);
+          comp.setTokenDataFromContract(token);
         });
       });
   }
@@ -86,6 +86,8 @@ export class BalancesComponent implements OnInit {
     }).then(balanceOf => {
       console.log(balanceOf.toString());
       tokenData.amount = balanceOf.toString();
+      tokenData.price = 0.5;
+      tokenData.usd = tokenData.price * tokenData.amount;
       return contract.name();
     }).then(name => {
       console.log(name.valueOf());
