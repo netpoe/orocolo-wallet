@@ -2,7 +2,7 @@
 
 Orocolo is an Angular ^5.0 Ethereum Wallet with the following features:
 
-- Generate a new wallet with a private key file or mnemonic 
+- Generate a new wallet with a private key file
 - Unlock your wallet via a JSON private key file or a mnemonic
 - View and send ETHer funds
 - Add ERC20 token addresses, list the token funds and send tokens to another address
