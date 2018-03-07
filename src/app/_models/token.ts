@@ -1,10 +1,11 @@
 export class Token {
   name?: string;
   symbol?: string;
-  price?: number;
+  ethPrice?: number;
+  usdPrice?: number;
   amount?: number;
-  usd?: number;
-  eth?: number;
+  totalUsd?: number;
+  totalEth?: number;
   contract?: any;
   address?: string;
 }

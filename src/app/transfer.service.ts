@@ -22,6 +22,8 @@ export class TransferService {
 
   transferFailed: boolean = false;
 
+  purchaseFailed: boolean = false;
+
   constructor(
     private eth: EthjsService,
     private router: Router
@@ -53,6 +55,30 @@ export class TransferService {
     if (this.transfer.amount > 0 && web3.utils.isAddress(this.transfer.to)) {
       contract.transfer(this.transfer.to, this.transfer.amount).then(tx => {
         console.log(tx);
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+  }
+
+  buyTokensFrom() {
+    var service = this;
+
+    var contract = this.currentToken.contract;
+
+    console.log(contract);
+
+    if (this.transfer.amount > 0 && web3.utils.isAddress(service.eth.wallet.address)) {
+      var _amount = this.currentToken.ethPrice * this.transfer.amount;
+      var _wei = this.eth.Utils.parseEther(_amount.toString());
+      var _gasPrice = this.eth.Utils.parseEther(this.transfer.gasPrice.toString());
+      var _gasLimit = this.transfer.gasLimit;
+      contract.sellTo({
+        gasPrice: _gasPrice,
+        value: _wei,
+      }).then(tx => {
+        console.log(tx);
+        return this.router.navigateByUrl('balances');
       }).catch(error => {
         console.log(error);
       });

@@ -3,18 +3,13 @@
 <section class="hero transfer">
   <div class="container-xs">
     <div class="balances-wrapper">
+      <div class="top">
+        <h3>Buy: {{ transferService.currentToken.name }} {{ transferService.currentToken.symbol }}</h3>
+        <h4>Price: {{ transferService.currentToken.ethPrice }}ETH · {{ transferService.currentToken.usdPrice | currency:'USD' }}USD</h4>
+      </div>
       <div class="middle">
-        <fieldset class="form-group address-to-input">
-          <label for="">* Address to:</label>
-          <input
-            [(ngModel)]="transferService.transfer.to"
-            type="text"
-            class="form-control"
-            autofocus="autofocus"
-            placeholder="0x0">
-        </fieldset>
         <fieldset class="form-group amount-input">
-          <label for="">* Amount in <strong class="text-white underline">{{ transferService.currentToken.symbol }}</strong>:</label>
+          <label for="">* Amount of <strong class="text-white underline">{{ transferService.currentToken.symbol }}</strong> tokens to buy:</label>
           <input
             [(ngModel)]="transferService.transfer.amount"
             type="text"
@@ -45,10 +40,10 @@
         </div>
         <fieldset class="text-right">
           <button
-            (click)="transferService.transferFunds()"
-            class="btn btn-success btn-block btn-lg">Transfer</button>
+            (click)="transferService.buyTokensFrom()"
+            class="btn btn-success btn-block btn-lg">Buy</button>
         </fieldset>
-        <div class="alert alert-danger text-white" role="alert" *ngIf="transferService.transferFailed">
+        <div class="alert alert-danger text-white" role="alert" *ngIf="transferService.purchaseFailed">
           <p><i class="icon-notification"></i> There was an error with your transaction. Please review your inputs and try again.</p>
         </div>
       </div>

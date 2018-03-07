@@ -77,12 +77,10 @@ export class BalancesComponent implements OnInit {
       return contract.price();
     }).then(price => {
       var _price = price[0];
-      var _amount = comp.eth.Utils.bigNumberify(tokenData.amount);
-      var _usd = _price.mul(_amount);
-      var _eth = (_usd > 0) ? _usd.div(comp.prices.ethPrice) : 0;
-      tokenData.price = comp.eth.Utils.formatEther(_price) * comp.prices.ethPrice;
-      tokenData.usd = _usd.toString();
-      tokenData.eth = _eth.toString();
+      tokenData.ethPrice = comp.eth.Utils.formatEther(_price);
+      tokenData.usdPrice = comp.eth.Utils.formatEther(_price) * comp.prices.ethPrice;
+      tokenData.totalUsd = tokenData.amount * tokenData.usdPrice;
+      tokenData.totalEth = tokenData.amount * tokenData.ethPrice;
     }).catch(error => {
       console.log(error);
     });
@@ -108,9 +106,9 @@ export class BalancesComponent implements OnInit {
           var token: Token = {
             name: 'Ether',
             symbol: sym,
-            price: price,
+            usdPrice: price,
             amount: etherString,
-            usd: price * etherString
+            totalUsd: price * etherString
           };
           comp.setCurrentToken(token);
           comp.setToken(sym, token);
