@@ -19,7 +19,6 @@ export class CryptoPricesService {
     })
     .toPromise()
     .then(function(response){
-      console.log(response);
       return response[tsyms];
     }).catch(function(error){
       console.log(error);
@@ -28,8 +27,9 @@ export class CryptoPricesService {
 
   setEthPrice() {
     var comp = this;
-    this.getPriceEquivalence('ETH').then(price => {
+    return this.getPriceEquivalence('ETH').then(price => {
       comp.ethPrice = price;
+      return price;
     });
   }
 

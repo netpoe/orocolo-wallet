@@ -18,7 +18,9 @@ export class LoginComponent implements OnInit {
     address: '',
     mnemonic: '',
     path: '',
-  };
+  }
+
+  file: any;
 
   constructor(private eth: EthjsService, private router: Router) {}
 
@@ -100,11 +102,11 @@ export class LoginComponent implements OnInit {
   }
 
   unlockWallet() {
-    if (environment.local) {
-      return this.unlockJsonRpcWallet();
+    if (environment.production) {
+      return this.unlockRopstenWallet();
     }
 
-    return this.unlockRopstenWallet();
+    return this.unlockJsonRpcWallet();
   }
 
   onUploadError($evt) {
@@ -115,7 +117,7 @@ export class LoginComponent implements OnInit {
     console.log($evt);
   }
 
-  onFileAdded(file) {
+  onFileAdded(file, $evt?) {
     var reader = new FileReader();
 
     var content;

@@ -15,7 +15,6 @@
         <div class="col-11">
           <div class="tab-pane active" id="from-file">
             <dropzone
-              [config]="config"
               [message]="'Click or drag your json private key file here to unlock'"
               (error)="onUploadError($event)"
               (success)="onUploadSuccess($event)"

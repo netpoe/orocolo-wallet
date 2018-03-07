@@ -28,9 +28,9 @@ export class BalancesComponent implements OnInit {
 
     this.eth.setERC20ABI();
 
-    this.prices.setEthPrice();
-
-    this.getTokensByAddress();
+    this.prices.setEthPrice().then(price => {
+      this.getTokensByAddress();
+    });
   }
 
   private setCurrentToken(data: Token) {
@@ -46,9 +46,12 @@ export class BalancesComponent implements OnInit {
 
     this.firebase.listTokensByAddress(this.eth.wallet.address)
       .subscribe(tokens => {
-        Object.keys(tokens).forEach(token => {
-          comp.setTokenDataFromContract(token);
-        });
+        console.log(tokens);
+        if (tokens) {
+          Object.keys(tokens).forEach(token => {
+            comp.setTokenDataFromContract(token);
+          });
+        }
       });
   }
 
@@ -67,13 +70,19 @@ export class BalancesComponent implements OnInit {
       return contract.balanceOf(comp.eth.wallet.address);
     }).then(balanceOf => {
       tokenData.amount = balanceOf.toString();
-      tokenData.price = 0.5;
-      tokenData.usd = tokenData.price * tokenData.amount;
-      tokenData.eth = tokenData.usd / comp.prices.ethPrice;
       return contract.name();
     }).then(name => {
       tokenData.name = name.valueOf()[0];
       comp.setToken(tokenData.symbol, tokenData);
+      return contract.price();
+    }).then(price => {
+      var _price = price[0];
+      var _amount = comp.eth.Utils.bigNumberify(tokenData.amount);
+      var _usd = _price.mul(_amount);
+      var _eth = (_usd > 0) ? _usd.div(comp.prices.ethPrice) : 0;
+      tokenData.price = comp.eth.Utils.formatEther(_price) * comp.prices.ethPrice;
+      tokenData.usd = _usd.toString();
+      tokenData.eth = _eth.toString();
     }).catch(error => {
       console.log(error);
     });

@@ -24,6 +24,7 @@ import { TransferComponent } from './transfer/transfer.component';
 import { AddTokenComponent } from './add-token/add-token.component';
 import { FirebaseService } from './firebase.service';
 import { TransferService } from './transfer.service';
+import { BuyTokenComponent } from './buy-token/buy-token.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -42,7 +43,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     HeaderComponent,
     NewWalletComponent,
     TransferComponent,
-    AddTokenComponent
+    AddTokenComponent,
+    BuyTokenComponent
   ],
   imports: [
     BrowserModule,

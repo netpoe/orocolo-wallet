@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Transfer } from './_models/transfer';
 import { Token } from './_models/token';
 import { EthjsService } from './ethjs.service';
+import { Router } from '@angular/router';
 
 let Web3 = require('web3');
 let web3 = new Web3();
@@ -22,7 +23,8 @@ export class TransferService {
   transferFailed: boolean = false;
 
   constructor(
-    private eth: EthjsService
+    private eth: EthjsService,
+    private router: Router
     ) { }
 
   private transferEth() {
@@ -34,6 +36,7 @@ export class TransferService {
 
     this.eth.wallet.send(this.transfer.to, amount, options).then(tx => {
       console.log(tx);
+      return this.router.navigateByUrl('balances');
     }).catch(error => {
       console.log(error);
       this.transferFailed = true;
