@@ -98,6 +98,8 @@ export class LoginComponent implements OnInit {
 
     this.eth.wallet = new this.eth.Wallet(this.wallet.privateKey, this.eth.provider);
 
+    this.eth.etherscanUrl = 'https://ropsten.etherscan.io/';
+
     return this.login();
   }
 

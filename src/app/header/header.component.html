@@ -11,8 +11,9 @@
           <a routerLink="/new-wallet" class="btn btn-outline-light">create new wallet</a>
         </nav>
         <nav
-          *ngIf="router.url == '/balances' || router.url == '/transfer' || router.url == '/add-token' || router.url == '/buy-token'">
+          *ngIf="isLoggedInRoute()">
           <a routerLink="/balances">Balances</a>
+          <a routerLink="/txn-history">Txns</a>
           <a routerLink="/login">Logout</a>
         </nav>
       </div>

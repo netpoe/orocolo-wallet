@@ -13,4 +13,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  isLoggedInRoute() {
+    var router = this.router;
+
+    return router.url == '/balances' ||
+      router.url == '/transfer' ||
+      router.url == '/add-token' ||
+      router.url == '/txn-history' ||
+      router.url == '/buy-token';
+  }
+
 }

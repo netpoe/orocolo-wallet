@@ -22,6 +22,8 @@ export class EthjsService {
 
   ERC20ABI: any;
 
+  etherscanUrl: string = '';
+
   constructor(
     private http: HttpClient) {
     this.Eth = Eth;

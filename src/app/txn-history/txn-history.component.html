@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<section class="hero txn-history">
+  <div class="container-md">
+    <div class="table-responsive">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Datetime</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Hash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let txn of txns">
+            <td>{{ txn.datetime }}</td>
+            <td>
+              <a href="{{ eth.etherscanUrl }}/address/{{ txn.from }}" target="_blank" class="d-inline-block text-truncate" style="max-width: 98px;">{{ txn.from }}</a>
+            </td>
+            <td>
+              <a href="{{ eth.etherscanUrl }}/address/{{ txn.to }}" target="_blank" class="d-inline-block text-truncate" style="max-width: 98px;">{{ txn.to }}</a>
+            </td>
+            <td>
+              <a href="{{ eth.etherscanUrl }}/tx/{{ txn.hash }}" target="_blank" class="d-inline-block text-truncate" style="max-width: 98px;">{{ txn.hash }}</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"></footer>

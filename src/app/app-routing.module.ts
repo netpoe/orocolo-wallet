@@ -6,6 +6,7 @@ import { BalancesComponent }  from './balances/balances.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { AddTokenComponent } from './add-token/add-token.component';
 import { BuyTokenComponent } from './buy-token/buy-token.component';
+import { TxnHistoryComponent } from './txn-history/txn-history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'transfer', component: TransferComponent },
   { path: 'add-token', component: AddTokenComponent },
   { path: 'buy-token', component: BuyTokenComponent },
+  { path: 'txn-history', component: TxnHistoryComponent },
 ];
 
 @NgModule({
