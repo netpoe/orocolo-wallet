@@ -39,6 +39,16 @@
   width: 80vw;
   display: none;
   z-index: 500;
+  padding-top: $header-height-mobile;
+  ul {
+    @include list-unstyled;
+    text-align: right;
+  }
+  li {
+    @include make-container;
+    padding-bottom: get-spacer(3);
+    padding-top: get-spacer(3);
+  }
 }
 
 #mobile-menu-trigger {
@@ -100,10 +110,10 @@ input[type="submit"].btn,
 
 .hero {
   @include flex-column-center;
-  // background: linear-gradient(to bottom, $purple, $cyan, $pink);
-  // background: linear-gradient(to bottom, $pink, $cyan, $purple);
   background: linear-gradient(to bottom, lighten($black, 14%), lighten($black, 7%), $black);
-  height: 95vh;
+  padding-bottom: $header-height-control;
+  padding-top: $header-height-control;
+  min-height: 95vh;
 }
 
 .footer {

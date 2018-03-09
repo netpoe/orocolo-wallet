@@ -43,7 +43,7 @@
           <div class="private-key-file-content" *ngIf="wallet.privateKey">
             <div class="row align-items-center">
               <div class="col-sm-9 ">
-                <span class="address">Address: {{ wallet.address }}</span>
+                <span class="address d-inline-block text-truncate" style="max-width: 280px;">Address: {{ wallet.address }}</span>
               </div>
               <div class="col-sm-3">
                 <button class="btn btn-block btn-success" (click)="unlockWallet()">Unlock <i class="icon-chevron-right"></i></button>

@@ -6,11 +6,11 @@
       <div class="top">
         <div class="selected-token-name">
           <div class="row align-items-center">
-            <div class="col-4"></div>
-            <div class="col-4">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
               <span>{{ transferService.currentToken.name | uppercase }}</span>
             </div>
-            <div class="col-4">
+            <div class="col-sm-4">
               <nav class="actions">
                 <a routerLink="/transfer" class="btn btn-sm btn-success"><i class="icon-expand2"></i> send</a>
                 <a
@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="bottom">
-        <span class="address">Address: {{ eth.wallet.address }}</span>
+        <span class="address d-inline-block text-truncate" style="max-width: 280px;">Address: {{ eth.wallet.address }}</span>
       </div>
     </div>
   </div>

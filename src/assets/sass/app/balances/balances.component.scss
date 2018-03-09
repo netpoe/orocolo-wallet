@@ -33,16 +33,26 @@
 /*
   Media queries
 */
-@media #{$xs-only} {}
-@media #{$sm-only} {}
-@media #{$md-only} {}
-@media #{$lg-only} {}
-@media #{$sm-down} {}
-@media #{$md-down} {}
-@media #{$lg-down} {}
-@media #{$sm-up} {}
-@media #{$md-up} {}
-@media #{$lg-up} {}
-@media #{$xl-up} {}
-@media #{$xxl-up} {}
+// @media #{$xs-only} {}
+// @media #{$sm-only} {}
+// @media #{$md-only} {}
+// @media #{$lg-only} {}
+@media #{$sm-down} {
+  .balances-wrapper {
+    .selected-token-name {
+      .actions {
+        padding-bottom: get-spacer(2);
+        padding-top: get-spacer(2);
+        text-align: center;
+      }
+    }
+  }
+}
+// @media #{$md-down} {}
+// @media #{$lg-down} {}
+// @media #{$sm-up} {}
+// @media #{$md-up} {}
+// @media #{$lg-up} {}
+// @media #{$xl-up} {}
+// @media #{$xxl-up} {}
 

@@ -1,6 +1,14 @@
 <input type="checkbox" id="mobile-menu-trigger">
 <div class="mobile-menu-wrapper">
-
+  <ul *ngIf="router.url == '/login' || router.url == '/new-wallet'">
+    <li><a routerLink="/login">Login</a></li>
+    <li><a routerLink="/new-wallet" class="btn btn-outline-light">create new wallet</a></li>
+  </ul>
+  <ul *ngIf="isLoggedInRoute()">
+    <li><a routerLink="/balances">Balances</a></li>
+    <li><a routerLink="/txn-history">Txns</a></li>
+    <li><a routerLink="/login">Logout</a></li>
+  </ul>
 </div>
 
 <header class="header">
