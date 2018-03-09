@@ -1,11 +1,18 @@
+<input type="checkbox" id="mobile-menu-trigger">
+<div class="mobile-menu-wrapper">
+
+</div>
+
 <header class="header">
   <div class="container">
     <div class="row">
-      <div class="col-sm-4 header-left">
+      <div class="col-6 header-left">
         <a href="#" class="logo"><i class="icon-key-hole"></i> orocolo</a>
       </div>
-      <div class="col-sm-4 header-center"></div>
-      <div class="col-sm-4 header-right">
+      <div class="col-6 header-right-mobile">
+        <label for="mobile-menu-trigger" class="mobile-menu-trigger"><i class="icon-menu"></i></label>
+      </div>
+      <div class="col-6 header-right">
         <nav *ngIf="router.url == '/login' || router.url == '/new-wallet'">
           <a routerLink="/login">Login</a>
           <a routerLink="/new-wallet" class="btn btn-outline-light">create new wallet</a>
